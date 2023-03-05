@@ -49,10 +49,14 @@ jobs:
           previous_version: ${{ steps.get_version.outputs.prev_version }}
           next_version: ${{ steps.determine_version.outputs.new_version }}
 
+      - name: Configure Git
+        uses: actions/configure-git@v1
+        with:
+          user.name: builder555
+          user.email: 85308587+builder555@users.noreply.github.com
+
       - name: Commit and push version file and changelog
         run: |
-          git config --local user.email "85308587+builder555@users.noreply.github.com"
-          git config --local user.name "builder555"
           git add version.txt CHANGELOG.md
           git commit -m "chore: release version ${{ steps.determine_version.outputs.new_version }}"
           git push origin master

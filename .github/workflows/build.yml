@@ -49,8 +49,6 @@ jobs:
 
       - name: Commit and push version file and changelog
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add version.txt CHANGELOG.md
           git commit -m "chore: release version ${{ steps.determine_version.outputs.new_version }}"
           git push origin master

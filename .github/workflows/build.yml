@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -23,12 +23,18 @@ jobs:
       - name: Package application
         run: tar -czf app.tgz dist/ws_serve dist/serve
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: myapp
           path: app.tgz
-      - uses: google-github-actions/release-please-action@v3
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create release
+        uses: release-please/action@v3
         with:
           token: ${{ secrets.TOKEN }}
-          release-type: simple
-          package-name: release-please-action
+          asset-path: myapp

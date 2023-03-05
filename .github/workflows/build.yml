@@ -46,4 +46,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: npx semantic-release --branches main
+        run: npx semantic-release --branches master

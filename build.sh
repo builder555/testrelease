@@ -1,19 +1,16 @@
-cd api
-if [ -d dist ]; then
-    rm -rf dist
+if [ -d api/dist ]; then
+    rm -rf api/dist
 fi
-if [ -d build ]; then
-    rm -rf build
+if [ -d api/build ]; then
+    rm -rf api/build
 fi
-.venv/bin/pyinstaller ws_serve.py
+api/.venv/bin/pyinstaller api/ws_serve.py
 
-cd ../ui
-if [ -d dist ]; then
-    rm -rf dist
+# cd ../ui
+if [ -d ui/dist ]; then
+    rm -rf ui/dist
 fi
-if [ -d build ]; then
-    rm -rf build
+if [ -d ui/build ]; then
+    rm -rf ui/build
 fi
-../api/.venv/bin/pyinstaller --add-data ./:./ serve.py
-
-cd ..
+api/.venv/bin/pyinstaller --add-data ui:ui ui/serve.py

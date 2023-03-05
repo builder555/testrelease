@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - master
+name: build-and-release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+      - name: Build application
+        run: |
+          pyinstaller api/ws_serve.py
+          pyinstaller --add-data ui:ui ui/serve.py
+      - name: Package application
+        run: tar -czf api/dist/ws_serve ui/dist/serve app.tgz
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: myapp
+          path: app.tgz
+  release-please:
+    needs: build  # Specify that this job depends on the 'build' job
+    runs-on: ubuntu-latest
+    if: github.repository == '{{ github.repository_owner }}/{{ github.repository_name }}'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: myapp
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: simple
+          package-name: release-please-action

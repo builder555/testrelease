@@ -29,6 +29,6 @@ jobs:
           path: app.tgz
       - uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
           release-type: simple
           package-name: release-please-action

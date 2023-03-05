@@ -4,46 +4,80 @@ on:
       - master
 name: build-and-release
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install pyinstaller
-      # - name: Build application
-      #   run: |
-      #     pyinstaller api/ws_serve.py
-      #     pyinstaller --add-data ui:ui ui/serve.py
-      - name: Package application
-        run: tar -czf app.tgz api/ ui/
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: myapp
-          path: app.tgz
   release:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get previous version
+        id: get_version
+        run: echo "::set-output name=prev_version::$(cat version.txt)"
+
+      - name: Determine new version
+        id: determine_version
+        run: |
+          commit_msg=$(git log -1 --pretty=%B)
+          prev_version=$PREV_VERSION
+          major=${prev_version%%.*}
+          minor=${prev_version%.*}
+          minor=${minor#*.}
+          patch=${prev_version##*.}
+
+          if [[ $commit_msg == *"fix!"* || $commit_msg == *"feat!"* ]]; then
+            new_version="$((major+1)).0.0"
+          elif [[ $commit_msg == *"fix:"* ]]; then
+            new_version="$major.$minor.$((patch+1))"
+          elif [[ $commit_msg == *"feat:"* ]]; then
+            new_version="$major.$((minor+1)).0"
+          else
+            new_version=$prev_version
+          fi
+
+          echo "::set-output name=new_version::$new_version"
+
+      - name: Update version file
+        run: echo "${{ steps.determine_version.outputs.new_version }}" > version.txt
+
+      - name: Generate changelog
+        id: changelog
+        uses: release-drafter/release-drafter@v7.1.0
         with:
-          fetch-depth: 0
+          config: .github/release-drafter.yml
+          previous_version: ${{ steps.get_version.outputs.prev_version }}
+          next_version: ${{ steps.determine_version.outputs.new_version }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Commit and push version file and changelog
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.txt CHANGELOG.md
+          git commit -m "chore: release version ${{ steps.determine_version.outputs.new_version }}"
+          git push origin master
+
+      - name: Zip app folder
+        run: |
+          zip -r app.zip api
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          node-version: 18.x
+          tag_name: ${{ steps.determine_version.outputs.new_version }}
+          release_name: Release ${{ steps.determine_version.outputs.new_version }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
 
-      - name: Install dependencies
-        run: npm install @semantic-release/github -D
-
-      - name: Release
+      - name: Upload asset
+        id: upload_asset
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: npx semantic-release --branches master
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./app.zip
+          asset_name: app.zip
+          asset_content_type: application/zip

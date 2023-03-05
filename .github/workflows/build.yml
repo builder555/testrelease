@@ -41,7 +41,7 @@ jobs:
 
       - name: Generate changelog
         id: changelog
-        uses: release-drafter/release-drafter@v7.1.0
+        uses: release-drafter/release-drafter@v5
         with:
           config: .github/release-drafter.yml
           previous_version: ${{ steps.get_version.outputs.prev_version }}

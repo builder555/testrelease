@@ -21,7 +21,7 @@ jobs:
           pyinstaller api/ws_serve.py
           pyinstaller --add-data ui:ui ui/serve.py
       - name: Package application
-        run: tar -czf api/dist/ws_serve ui/dist/serve app.tgz
+        run: tar -czf dist/ws_serve dist/serve app.tgz
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:

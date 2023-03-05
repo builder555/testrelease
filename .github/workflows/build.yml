@@ -2,9 +2,11 @@ on:
   push:
     branches:
       - master
+      
 name: build-and-release
 jobs:
   release:
+    if: github.event.sender.type != 'Bot'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -49,6 +51,8 @@ jobs:
 
       - name: Commit and push version file and changelog
         run: |
+          git config --local user.email "85308587+builder555@users.noreply.github.com"
+          git config --local user.name "builder555"
           git add version.txt CHANGELOG.md
           git commit -m "chore: release version ${{ steps.determine_version.outputs.new_version }}"
           git push origin master

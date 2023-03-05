@@ -8,7 +8,6 @@
 	<input type="text" id="message" placeholder="Enter message" />
 	<button onclick="sendMessage()">Send</button>
 	<ul id="messages"></ul>
-
 	<script>
 		const socket = new WebSocket('ws://localhost:12999');
 		socket.onmessage = event => {

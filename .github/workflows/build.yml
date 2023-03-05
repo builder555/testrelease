@@ -27,15 +27,6 @@ jobs:
         with:
           name: myapp
           path: app.tgz
-  release-please:
-    needs: build  # Specify that this job depends on the 'build' job
-    runs-on: ubuntu-latest
-    if: github.repository == '{{ github.repository_owner }}/{{ github.repository_name }}'
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: myapp
       - uses: google-github-actions/release-please-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

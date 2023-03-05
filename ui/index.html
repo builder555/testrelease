@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebSocket Client</title>
+</head>
+<body>
+	<h1>WebSocket Client</h1>
+	<input type="text" id="message" placeholder="Enter message" />
+	<button onclick="sendMessage()">Send</button>
+	<ul id="messages"></ul>
+
+	<script>
+		const socket = new WebSocket('ws://localhost:12999');
+		socket.onmessage = event => {
+			const messageList = document.getElementById('messages');
+			const li = document.createElement('li');
+			li.textContent = `got: ${event.data}`;
+			messageList.appendChild(li);
+		};
+
+		function sendMessage() {
+			const messageInput = document.getElementById('message');
+			const message = messageInput.value;
+			socket.send(message);
+			messageInput.value = '';
+		}
+	</script>
+</body>
+</html>

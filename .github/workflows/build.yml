@@ -8,6 +8,7 @@ on:
 jobs:
   increment-version:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, 'chore:')"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -55,14 +56,13 @@ jobs:
 
           # Update the version file
           echo "$major.$minor.$patch" > version.txt
-          cat version.txt
 
-      # - name: Commit version changes
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     git add version.txt
-      #     git commit -m "Bump version to $(cat version.txt)"
+      - name: Commit version changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.txt
+          git commit -m "chore: bump version to $(cat version.txt)"
       
       # - name: Push changes
       #   uses: ad-m/github-push-action@master

@@ -16,28 +16,41 @@ jobs:
         id: get-version
         run: |
           echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip install pyinstaller websockets
-      - name: Build application
+      - name: Update changelog
         run: |
-          pyinstaller api/ws_serve.py
-          pyinstaller --add-data ui:ui ui/serve.py
-      - name: Package application
-        id: package-app
-        run: |
-          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
-          cd dist && zip -r $zipname ws_serve/ serve/ 
-          fullpath=$(realpath $zipname)
-          cd .. 
-          zip -u dist/$zipname start.sh
-          echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.get-version.outputs.tag }}
-          files: |
-            ${{ steps.package-app.outputs.dist_path }}
+          API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits"
+          COMMITS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$API_URL" | jq -r 'map(select(.commit.message | startswith("chore:") | not)) | "[\(.[].commit.message)](\(.[].commit.url))"')
+          echo "# Changelog\n" > CHANGELOG.md
+          echo "## v$(cat version.txt)\n" >> CHANGELOG.md
+          echo "$COMMITS" >> CHANGELOG.md
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add CHANGELOG.md
+          git commit -m "chore: update changelog"
+          git push
+
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
+      # - name: Install dependencies
+      #   run: pip install pyinstaller websockets
+      # - name: Build application
+      #   run: |
+      #     pyinstaller api/ws_serve.py
+      #     pyinstaller --add-data ui:ui ui/serve.py
+      # - name: Package application
+      #   id: package-app
+      #   run: |
+      #     zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
+      #     cd dist && zip -r $zipname ws_serve/ serve/ 
+      #     fullpath=$(realpath $zipname)
+      #     cd .. 
+      #     zip -u dist/$zipname start.sh
+      #     echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: ${{ steps.get-version.outputs.tag }}
+      #     files: |
+      #       ${{ steps.package-app.outputs.dist_path }}

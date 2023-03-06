@@ -90,10 +90,11 @@ jobs:
           # pyinstaller api/ws_serve.py
         run: |
           pyinstaller --add-data ui:ui ui/serve.py
-          fullpath=$(realpath dist)
+      - name: Package application
+        run: |
+          tar -czf app.tgz dist/serve
+          fullpath=$(realpath app.tgz)
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
-      # - name: Package application
-      #   run: tar -czf app.tgz dist/ws_serve dist/serve
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v3
       #   with:

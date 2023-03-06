@@ -45,11 +45,10 @@ jobs:
           # extra-files: |
           #   myapp
         if: ${{ steps.create-new-release.outputs.release_created }}
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+      - name: Release
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: myapp.zip
-          asset_name: myapp-${{ steps.create-new-release.outputs.tag_name }}.zip
+          files: build.sh
+          # asset_name: myapp-${{ steps.create-new-release.outputs.tag_name }}.zip

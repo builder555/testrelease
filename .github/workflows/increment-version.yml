@@ -29,10 +29,9 @@ jobs:
           elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
             echo "increment=major" >> $GITHUB_OUTPUT
           else
-            echo "Nothing to increment"
-            exit 0
+            echo "increment=none" >> $GITHUB_OUTPUT
           fi
-
+        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
       - name: Increment version
         id: increment-version
         run: |

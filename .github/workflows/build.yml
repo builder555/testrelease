@@ -89,6 +89,7 @@ jobs:
         run: |
           pyinstaller api/ws_serve.py
           pyinstaller --add-data ui:ui ui/serve.py
+          git add dist/*
       # - name: Package application
       #   run: tar -czf app.tgz dist/ws_serve dist/serve
       # - name: Upload artifact

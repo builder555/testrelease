@@ -68,7 +68,7 @@ jobs:
           branch: ${{ github.ref }}
   create-release:
     runs-on: ubuntu-latest
-    if: "startsWith(github.event.head_commit.message, 'chore:')"
+    # if: "startsWith(github.event.head_commit.message, 'chore:')"
     steps:
       - name: Checkout
         uses: actions/checkout@v3

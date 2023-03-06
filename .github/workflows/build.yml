@@ -9,7 +9,7 @@ jobs:
   increment-version:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.increment-version.outputs.version}}
+      tag: ${{ steps.increment-version.outputs.tag}}
     if: "!startsWith(github.event.head_commit.message, 'chore:')"
     steps:
       - name: Checkout code
@@ -81,4 +81,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ jobs.increment-version.outputs.version}}
+          tag_name: v${{ jobs.increment-version.outputs.version }}

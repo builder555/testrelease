@@ -8,6 +8,8 @@ on:
 jobs:
   increment-version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.increment-version.outputs.version}}
     if: "!startsWith(github.event.head_commit.message, 'chore:')"
     steps:
       - name: Checkout code
@@ -53,6 +55,7 @@ jobs:
 
           # Update the version file
           echo "$major.$minor.$patch" > version.txt
+          cat version >> $GITHUB_OUTPUT
 
       - name: Commit version changes
         run: |
@@ -60,7 +63,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add version.txt
           git commit -m "chore: bump version to $(cat version.txt)"
-          git tag versionX
+          git tag v$(cat version.txt)
       
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -78,5 +81,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: versionX
-        
+          tag_name: v${{ jobs.increment-version.outputs.version}}

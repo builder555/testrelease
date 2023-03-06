@@ -47,7 +47,7 @@ jobs:
         if: ${{ steps.create-new-release.outputs.release_created }}
       - name: test step
         run: |
-          echo ${{ steps.create-new-release.outputs.tag_name }}
+          echo ${{ steps.create-new-release.outputs }}
           echo "^^~~^^"
       - name: Release
         uses: softprops/action-gh-release@v1

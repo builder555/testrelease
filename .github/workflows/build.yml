@@ -78,7 +78,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # build
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -86,14 +85,15 @@ jobs:
       - name: Install dependencies
         run: pip install pyinstaller
       - name: Build application
-          # pyinstaller api/ws_serve.py
         run: |
+          pyinstaller api/ws_serve.py
           pyinstaller --add-data ui:ui ui/serve.py
       - name: Package application
         id: package-app
         run: |
-          tar -czf app.tgz dist/serve
-          fullpath=$(realpath app.tgz)
+          zipname=PineSAM-${{ steps.increment-version.outputs.tag }}.zip
+          cd dist && zip -r $zipname ws_serve/ serve/ ../start.sh
+          fullpath=$(realpath $zipname)
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v3

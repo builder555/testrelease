@@ -1,8 +1,8 @@
 #!/bin/bash
-./api/dist/ws_serve/ws_serve &
+./ws_serve/ws_serve &
 pid1=$!
 
-./ui/dist/serve/serve &
+./serve/serve &
 pid2=$!
 
 sleep 5

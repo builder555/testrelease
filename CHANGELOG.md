@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.5.3
+
+* [feat: use incremental changelog](https://api.github.com/repos/builder555/testrelease/git/commits/698e4e1dcd3268401cc1bebaabc5ae05d96de3e3)
+* [fix: more fake changes](https://api.github.com/repos/builder555/testrelease/git/commits/fb7879dccd5116e0dd3e8d49e6dfaa65054d2464)
+
 ## v1.5.2
 
 * [fix: format changelog](https://api.github.com/repos/builder555/testrelease/git/commits/9de4a612f7dfa80dbbdac7ed815720104ec0df56)

@@ -31,8 +31,8 @@ jobs:
           else
             echo "increment=none" >> $GITHUB_OUTPUT
           fi
-        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
       - name: Increment version
+        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
         id: increment-version
         run: |
           # Parse the current version using semver
@@ -56,6 +56,7 @@ jobs:
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
+        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -64,6 +65,7 @@ jobs:
           git tag ${{ steps.increment-version.outputs.tag }}
       
       - name: Push changes
+        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

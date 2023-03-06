@@ -83,7 +83,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: pip install pyinstaller
+        run: pip install pyinstaller websockets
       - name: Build application
         run: |
           pyinstaller api/ws_serve.py
@@ -91,19 +91,12 @@ jobs:
       - name: Package application
         id: package-app
         run: |
-          zipname=PineSAM-${{ needs.increment-version.outputs.tag }}.zip
+          zipname=PineSAM-Ubuntu-${{ needs.increment-version.outputs.tag }}.zip
           cd dist && zip -r $zipname ws_serve/ serve/ 
           fullpath=$(realpath $zipname)
           cd .. 
           zip -u dist/$zipname start.sh
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: myapp
-      #     path: |
-      #       dist/serve
-
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

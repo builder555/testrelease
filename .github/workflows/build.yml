@@ -86,12 +86,12 @@ jobs:
       - name: Install dependencies
         run: pip install pyinstaller
       - name: Build application
+        id: build-app
           # pyinstaller api/ws_serve.py
         run: |
           pyinstaller --add-data ui:ui ui/serve.py
-      - name: test step
-        run: |
-          ls -lah
+          fullpath=$(realpath dist)
+          echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
       # - name: Package application
       #   run: tar -czf app.tgz dist/ws_serve dist/serve
       # - name: Upload artifact
@@ -101,9 +101,9 @@ jobs:
       #     path: |
       #       dist/serve
         
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: ${{ needs.increment-version.outputs.tag }}
-      #     files: |
-      #       myapp
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.increment-version.outputs.tag }}
+          files: |
+            ${{ steps.build-app.outputs.dist_path }}

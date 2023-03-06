@@ -91,7 +91,7 @@ jobs:
       - name: Package application
         id: package-app
         run: |
-          zipname=PineSAM-Ubuntu-${{ needs.increment-version.outputs.tag }}.zip
+          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ needs.increment-version.outputs.tag }}.zip
           cd dist && zip -r $zipname ws_serve/ serve/ 
           fullpath=$(realpath $zipname)
           cd .. 

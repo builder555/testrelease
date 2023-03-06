@@ -60,7 +60,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add version.txt
           git commit -m "chore: bump version to $(cat version.txt)"
-          git tag v$(cat version.txt)
+          git tag versionX
       
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -77,4 +77,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Release
         uses: softprops/action-gh-release@v1
+        with:
+          tag_name: versionX
         

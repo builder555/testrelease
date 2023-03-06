@@ -7,9 +7,13 @@ DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=os.path.join(DIRECTORY,'ui'), **kwargs)
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
 
+def main():
+    if os.path.exists('ui'):
+        DIRECTORY = os.path.join(DIRECTORY,'ui')
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        httpd.serve_forever()
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving UI at port", PORT)
-    httpd.serve_forever()
+if __name__ == "__main__":
+    main()

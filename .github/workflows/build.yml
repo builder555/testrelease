@@ -71,16 +71,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           tags: true
-  create-release:
+  build-and-release:
     needs: increment-version
     runs-on: ubuntu-latest
     # if: "startsWith(github.event.head_commit.message, 'chore:')"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      # build
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install pyinstaller
+      - name: Build application
+        run: |
+          pyinstaller api/ws_serve.py
+          pyinstaller --add-data ui:ui ui/serve.py
+      # - name: Package application
+      #   run: tar -czf app.tgz dist/ws_serve dist/serve
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: myapp
+      #     path: app.tgz
+        
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.increment-version.outputs.tag }}
           files: |
-            ui/index.html
+            dist/ws_serve
+            dist/serve

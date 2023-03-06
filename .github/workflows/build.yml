@@ -1,58 +1,67 @@
+name: Increment Version
+
 on:
   push:
     branches:
       - master
-name: build-and-release
+
 jobs:
-  build:
+  increment-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install pyinstaller
-      # - name: Build application
-      #   run: |
-      #     pyinstaller api/ws_serve.py
-      #     pyinstaller --add-data ui:ui ui/serve.py
-      # - name: Package application
-      #   run: tar -czf app.tgz dist/ws_serve dist/serve
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: myapp
-          path: |
-            api
-            ui
-  # release:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Create release
-        id: create-new-release
-        uses: google-github-actions/release-please-action@v3
-        with:
-          token: ${{ secrets.TOKEN }}
-          release-type: simple
-          package-name: tesssstname
-          # extra-files: |
-          #   myapp
-        if: ${{ steps.create-new-release.outputs.release_created }}
-      - name: test step
+        uses: actions/checkout@v2
+      
+      - name: Get current version
+        id: get-version
+        run: echo "::set-output name=current_version::$(cat version.txt)"
+
+      - name: Determine version increment
+        id: determine-increment
         run: |
-          echo ${{ steps.create-new-release.outputs }}
-          echo "^^~~^^"
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Parse the latest commit message and determine the type of change
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 HEAD)
+          if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
+            echo "::set-output name=increment::patch"
+          elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
+            echo "::set-output name=increment::minor"
+          elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
+            echo "::set-output name=increment::major"
+          else
+            echo "::set-output name=increment::none"
+          fi
+
+      - name: Increment version
+        id: increment-version
+        run: |
+          # Parse the current version using semver
+          IFS='.' read -r major minor patch <<< "$(cat version.txt)"
+          
+          # Determine the type of increment and update the version number accordingly
+          INCREMENT_TYPE=${{ steps.determine-increment.outputs.increment }}
+          if [[ "$INCREMENT_TYPE" == "patch" ]]; then
+            patch=$((patch + 1))
+          elif [[ "$INCREMENT_TYPE" == "minor" ]]; then
+            minor=$((minor + 1))
+            patch=0
+          elif [[ "$INCREMENT_TYPE" == "major" ]]; then
+            major=$((major + 1))
+            minor=0
+            patch=0
+          fi
+
+          # Update the version file
+          echo "$major.$minor.$patch" > version.txt
+
+      - name: Commit version changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.txt
+          git commit -m "Bump version to $(cat version.txt)"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          files: build.sh
-          # asset_name: myapp-${{ steps.create-new-release.outputs.tag_name }}.zip
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

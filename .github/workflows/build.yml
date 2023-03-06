@@ -19,7 +19,7 @@ jobs:
       - name: Update changelog
         run: |
           API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits"
-          COMMITS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$API_URL" | jq -r 'map(select(.commit.message | startswith("chore:") | not)) | .[] | "* [\(.commit.message)](\(.commit.url))"')
+          COMMITS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$API_URL" | jq -r 'map(select(.commit.message | startswith("chore:") | not)) | .[] | "* [\(.commit.message)](\(.html_url))"')
           echo "# Changelog" > changelog.tmp
           echo "" >> changelog.tmp
           echo "## v$(cat version.txt)" >> changelog.tmp

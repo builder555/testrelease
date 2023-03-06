@@ -82,3 +82,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.increment-version.outputs.tag }}
+          files: |
+            ui/index.html

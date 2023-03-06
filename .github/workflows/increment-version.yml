@@ -29,7 +29,8 @@ jobs:
           elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
             echo "increment=major" >> $GITHUB_OUTPUT
           else
-            echo "increment=none" >> $GITHUB_OUTPUT
+            echo "Nothing to increment"
+            exit 0
           fi
 
       - name: Increment version

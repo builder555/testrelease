@@ -26,18 +26,29 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: myapp
-          path: api
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+          path: |
+            api
+            ui
+  # release:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Create release
+        id: create-new-release
         uses: google-github-actions/release-please-action@v3
         with:
           token: ${{ secrets.TOKEN }}
           release-type: simple
           package-name: tesssstname
-          extra-files: |
-            myapp
+          # extra-files: |
+          #   myapp
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: myapp.zip
+          asset_name: myapp-${{ steps.create-new-release.outputs.tag_name }}.zip

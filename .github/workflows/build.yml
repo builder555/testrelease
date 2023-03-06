@@ -91,9 +91,11 @@ jobs:
       - name: Package application
         id: package-app
         run: |
-          zipname=PineSAM-${{ steps.increment-version.outputs.tag }}.zip
-          cd dist && zip -r $zipname ws_serve/ serve/ ../start.sh
+          zipname=PineSAM-${{ needs.increment-version.outputs.tag }}.zip
+          cd dist && zip -r $zipname ws_serve/ serve/ 
           fullpath=$(realpath $zipname)
+          cd .. 
+          zip -u dist/$zipname start.sh
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v3
@@ -101,7 +103,7 @@ jobs:
       #     name: myapp
       #     path: |
       #       dist/serve
-        
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

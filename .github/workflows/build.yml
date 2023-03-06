@@ -86,11 +86,11 @@ jobs:
       - name: Install dependencies
         run: pip install pyinstaller
       - name: Build application
-        id: build-app
           # pyinstaller api/ws_serve.py
         run: |
           pyinstaller --add-data ui:ui ui/serve.py
       - name: Package application
+        id: package-app
         run: |
           tar -czf app.tgz dist/serve
           fullpath=$(realpath app.tgz)
@@ -107,4 +107,4 @@ jobs:
         with:
           tag_name: ${{ needs.increment-version.outputs.tag }}
           files: |
-            ${{ steps.build-app.outputs.dist_path }}
+            ${{ steps.package-app.outputs.dist_path }}

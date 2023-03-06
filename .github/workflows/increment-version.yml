@@ -16,7 +16,7 @@ jobs:
       - name: Increment version
         id: determine-increment
         run: |  
-          COMMITS=$(echo "${{ github.event.commits }}" | jq -r '.[] | .commit.message')
+          COMMITS=$(echo "${{ toJSON(github.event.commits) }}" | jq -r '.[] | .commit.message')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
           for COMMIT_MESSAGE in $COMMITS; do
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then

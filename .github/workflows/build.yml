@@ -30,30 +30,32 @@ jobs:
           else
             echo "increment=none" >> $GITHUB_OUTPUT
           fi
-      - name: test Workflow
-        run: |
-          echo ${{ steps.determine-increment.outputs.increment}} ~~
-      # - name: Increment version
-      #   id: increment-version
+      # - name: test Workflow
       #   run: |
-      #     # Parse the current version using semver
-      #     IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          
-      #     # Determine the type of increment and update the version number accordingly
-      #     INCREMENT_TYPE=${{ steps.determine-increment.outputs.increment }}
-      #     if [[ "$INCREMENT_TYPE" == "patch" ]]; then
-      #       patch=$((patch + 1))
-      #     elif [[ "$INCREMENT_TYPE" == "minor" ]]; then
-      #       minor=$((minor + 1))
-      #       patch=0
-      #     elif [[ "$INCREMENT_TYPE" == "major" ]]; then
-      #       major=$((major + 1))
-      #       minor=0
-      #       patch=0
-      #     fi
+      #     echo ${{ steps.determine-increment.outputs.increment}} ~~
 
-      #     # Update the version file
-      #     echo "$major.$minor.$patch" > version.txt
+      - name: Increment version
+        id: increment-version
+        run: |
+          # Parse the current version using semver
+          IFS='.' read -r major minor patch <<< "$(cat version.txt)"
+          
+          # Determine the type of increment and update the version number accordingly
+          INCREMENT_TYPE=${{ steps.determine-increment.outputs.increment }}
+          if [[ "$INCREMENT_TYPE" == "patch" ]]; then
+            patch=$((patch + 1))
+          elif [[ "$INCREMENT_TYPE" == "minor" ]]; then
+            minor=$((minor + 1))
+            patch=0
+          elif [[ "$INCREMENT_TYPE" == "major" ]]; then
+            major=$((major + 1))
+            minor=0
+            patch=0
+          fi
+
+          # Update the version file
+          echo "$major.$minor.$patch" > version.txt
+          cat version.txt
 
       # - name: Commit version changes
       #   run: |

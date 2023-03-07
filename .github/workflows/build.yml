@@ -33,6 +33,7 @@ jobs:
           cd dist && zip -r $zipname ws_serve/ serve/ 
           cd .. 
           zip -u dist/$zipname start.sh
+          mv dist/$zipname ./
           echo "dist_path=$zipname" >> $GITHUB_OUTPUT
       - name: Upload artifact
         uses: actions/upload-artifact@v3

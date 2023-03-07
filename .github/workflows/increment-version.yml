@@ -36,11 +36,10 @@ jobs:
           done
           echo "$major.$minor.$patch" > version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
-          echo "is_incremented=$is_incremented"
           echo "is_incremented=$is_incremented" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
-        if: ${{ steps.determine-increment.outputs.is_incremented != 0 }}
+        if: ${{ steps.increment-version.outputs.is_incremented != 0 }}
         run: |
           echo "checking version"
           cat version.txt
@@ -51,7 +50,7 @@ jobs:
           git tag ${{ steps.increment-version.outputs.tag }}
       
       - name: Push changes
-        if: ${{ steps.determine-increment.outputs.is_incremented != 0 }}
+        if: ${{ steps.increment-version.outputs.is_incremented != 0 }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

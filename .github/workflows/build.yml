@@ -89,4 +89,4 @@ jobs:
           tag_name: ${{ steps.get-version.outputs.tag }}
           # body_path: ${{ steps.update-changelog.outputs.release_path }}
           files: |
-            ${{ steps.download.outputs.download-path }}
+            ubu-pack.zip

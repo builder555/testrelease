@@ -29,7 +29,8 @@ jobs:
       - name: Package application
         id: package-app
         run: |
-          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
+          zipname=ubu-pack.zip
+          # zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
           zip -r $zipname api/
           # cd dist && zip -r $zipname ws_serve/ serve/ 
           # cd .. 
@@ -40,7 +41,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact-ubuntu
-          path: ${{ steps.package-app.outputs.dist_path }}
+          path: ubu-pack.zip
+          # path: ${{ steps.package-app.outputs.dist_path }}
 
   # build-mac:
   #   runs-on: macos-latest
@@ -80,7 +82,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact-ubuntu
-          path: build/
+          path: ubu-pack.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

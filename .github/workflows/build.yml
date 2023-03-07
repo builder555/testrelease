@@ -29,20 +29,18 @@ jobs:
       - name: Package application
         id: package-app
         run: |
-          zipname=ubu-pack.zip
-          # zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
+          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
           zip -r $zipname api/
           # cd dist && zip -r $zipname ws_serve/ serve/ 
           # cd .. 
           # zip -u dist/$zipname start.sh
-          # fullpath=$(realpath $zipname)
+          # # fullpath=$(realpath $zipname)
           echo "dist_path=$zipname" >> $GITHUB_OUTPUT
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact-ubuntu
-          path: ubu-pack.zip
-          # path: ${{ steps.package-app.outputs.dist_path }}
+          path: ${{ steps.package-app.outputs.dist_path }}
 
   # build-mac:
   #   runs-on: macos-latest
@@ -89,4 +87,4 @@ jobs:
           tag_name: ${{ steps.get-version.outputs.tag }}
           # body_path: ${{ steps.update-changelog.outputs.release_path }}
           files: |
-            ubu-pack.zip
+            ./*.zip

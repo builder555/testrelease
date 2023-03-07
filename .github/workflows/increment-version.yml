@@ -12,14 +12,34 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
       - name: Increment version
         id: increment-version
         run: | 
-          IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          for commit_message in $(git log --format=%B "${{ github.event.before }}^..${{ github.sha }}"); do
-            echo "$commit_message"
+          commits=${{github.event.commits}}
+          length=${#commits[@]}
+          for (( i = 0; i < length; i++ )); do
+            commit=${{github.event.commits[i]}}
+            echo ${{commit.url}}
+            echo ${{commit.id}}
+            echo ${{commit.author.username}}
+            echo ${{commit.message}}
           done
+          # IFS='.' read -r major minor patch <<< "$(cat version.txt)"
+          # for COMMIT_MESSAGE in $(git log --format=%B "${{ github.event.before }}...${{ github.sha }}"); do
+          #   if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
+          #     patch=$((patch + 1))
+          #   elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
+          #     minor=$((minor + 1))
+          #     patch=0
+          #   elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
+          #     major=$((major + 1))
+          #     minor=0
+          #     patch=0
+          #   fi
+          # done
+          # echo "$major.$minor.$patch" > version.txt
+          # echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
+
       # - name: Commit version changes
       #   # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
       #   run: |

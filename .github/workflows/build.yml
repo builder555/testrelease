@@ -82,7 +82,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact-ubuntu
-          path: ubu-pack.zip
+          path: .
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

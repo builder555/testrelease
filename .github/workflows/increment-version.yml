@@ -15,14 +15,8 @@ jobs:
       - name: Increment version
         id: increment-version
         run: | 
-          commits=${{github.event.commits}}
-          length=${#commits[@]}
-          for (( i = 0; i < length; i++ )); do
-            commit=${{github.event.commits[i]}}
-            echo ${{commit.url}}
-            echo ${{commit.author.username}}
-            echo ${{commit.message}}
-          done
+          commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message")
+          echo $commits
           # IFS='.' read -r major minor patch <<< "$(cat version.txt)"
           # for COMMIT_MESSAGE in $(git log --format=%B "${{ github.event.before }}...${{ github.sha }}"); do
           #   if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then

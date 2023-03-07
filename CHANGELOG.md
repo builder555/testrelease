@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.2
+
+* fix: use specific name for artifact [e792f04](https://github.com/builder555/testrelease/commit/e792f04d74c7245811823bcac0804c4fbfb699e2)
+
 ## v1.8.1
 
 * fix: use different file sharing b/w jobs [dcec548](https://github.com/builder555/testrelease/commit/dcec548069e11d7c4bd5dfea7cd512ac3c91e823)

@@ -18,22 +18,23 @@ jobs:
           commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message" | tr -d '"')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
           readarray -t commit_messages <<< "$commits"
-          echo "is_incremented=0" >> $GITHUB_OUTPUT
+          is_incremented=0
           for COMMIT_MESSAGE in "${commit_messages[@]}"; do
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
-              echo "is_incremented=1" >> $GITHUB_OUTPUT
+              is_incremented=1
               patch=$((patch + 1))
             elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
-              echo "is_incremented=1" >> $GITHUB_OUTPUT
+              is_incremented=1
               minor=$((minor + 1))
               patch=0
             elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
-              echo "is_incremented=1" >> $GITHUB_OUTPUT
+              is_incremented=1
               major=$((major + 1))
               minor=0
               patch=0
             fi
           done
+          echo "is_incremented=$is_incremented" >> $GITHUB_OUTPUT
           echo "$major.$minor.$patch" > version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
 

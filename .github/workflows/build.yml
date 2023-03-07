@@ -7,7 +7,42 @@ on:
       - master
 
 jobs:
-  build-and-release:
+  build-linux:
+    runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.package-app.outputs.dist_path }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get version
+        id: get-version
+        run: |
+          echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install pyinstaller websockets
+      - name: Build application
+        run: |
+          pyinstaller api/ws_serve.py
+          pyinstaller --add-data ui:ui ui/serve.py
+      - name: Package application
+        id: package-app
+        run: |
+          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
+          cd dist && zip -r $zipname ws_serve/ serve/ 
+          fullpath=$(realpath $zipname)
+          cd .. 
+          zip -u dist/$zipname start.sh
+          echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
+  # build-mac:
+  #   runs-on: macos-latest
+  # build-win:
+  #   runs-on: windows-latest
+  create-release:
+    needs: build-linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,30 +70,10 @@ jobs:
           git commit -m "chore: update changelog"
           git push
           echo "release_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip install pyinstaller websockets
-      - name: Build application
-        run: |
-          pyinstaller api/ws_serve.py
-          pyinstaller --add-data ui:ui ui/serve.py
-      - name: Package application
-        id: package-app
-        run: |
-          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
-          cd dist && zip -r $zipname ws_serve/ serve/ 
-          fullpath=$(realpath $zipname)
-          cd .. 
-          zip -u dist/$zipname start.sh
-          echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.get-version.outputs.tag }}
           body_path: ${{ steps.update-changelog.outputs.release_path }}
           files: |
-            ${{ steps.package-app.outputs.dist_path }}
+            ${{ needs.build-linux.outputs.package }}

@@ -21,18 +21,19 @@ jobs:
             echo "checking $COMMIT_MESSAGE"
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
               echo "incrementing patch"
-              echo "before: $patch"
               patch=$((patch + 1))
-              echo "after: $patch"
             elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
+              echo "incrementing minor"
               minor=$((minor + 1))
               patch=0
             elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
+              echo "incrementing major"
               major=$((major + 1))
               minor=0
               patch=0
             fi
           done
+          echo "$major.$minor.$patch"
           echo "$major.$minor.$patch" > version.txt
           cat version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT

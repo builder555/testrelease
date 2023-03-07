@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.1
+
+* fix: use different file sharing b/w jobs [dcec548](https://github.com/builder555/testrelease/commit/dcec548069e11d7c4bd5dfea7cd512ac3c91e823)
+
 ## v1.8.0
 
 * feat: split bulid and release jobs [b30af96](https://github.com/builder555/testrelease/commit/b30af96be1bef42beb77f4313b71b1e7fdeb1466)

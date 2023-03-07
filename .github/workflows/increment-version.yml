@@ -20,7 +20,10 @@ jobs:
           echo "$commits" | while read COMMIT_MESSAGE; do
             echo "checking $COMMIT_MESSAGE"
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
+              echo "incrementing patch"
+              echo "before: $patch"
               patch=$((patch + 1))
+              echo "after: $patch"
             elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
               minor=$((minor + 1))
               patch=0

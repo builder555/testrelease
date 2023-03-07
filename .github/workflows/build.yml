@@ -107,13 +107,11 @@ jobs:
           git push
           echo "release_text_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
       - name: Download ubuntu artifact
-        id: download
         uses: actions/download-artifact@v3
         with:
           name: build-artifact-ubuntu
           path: .
       - name: Download macos artifact
-        id: download
         uses: actions/download-artifact@v3
         with:
           name: build-artifact-macos

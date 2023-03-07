@@ -2,6 +2,10 @@
 
 ## v1.10.0
 
+* ensure release only runs after builds [b6041bc](https://github.com/builder555/testrelease/commit/b6041bce93d0346e4c8fa894fc1045d615f09cca)
+
+## v1.10.0
+
 * fix error [ccc9b9a](https://github.com/builder555/testrelease/commit/ccc9b9a5cedf84a80237bd0533dafb1edaae55f9)
 
 ## v1.9.2

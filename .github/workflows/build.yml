@@ -41,8 +41,40 @@ jobs:
           name: build-artifact-ubuntu
           path: ${{ steps.package-app.outputs.dist_path }}
 
-  # build-mac:
-  #   runs-on: macos-latest
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get version
+        id: get-version
+        run: |
+          echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install pyinstaller websockets
+      - name: Build application
+        run: |
+          pyinstaller api/ws_serve.py
+          pyinstaller --add-data ui:ui ui/serve.py
+      - name: Package application
+        id: package-app
+        run: |
+          zipname=$(basename ${GITHUB_REPOSITORY})-MacOS-${{ steps.get-version.outputs.tag }}.zip
+          cd dist && zip -r $zipname ws_serve/ serve/ 
+          cd .. 
+          zip -u dist/$zipname start.sh
+          mv dist/$zipname ./
+          echo "dist_path=$zipname" >> $GITHUB_OUTPUT
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact-macos
+          path: ${{ steps.package-app.outputs.dist_path }}
+
   # build-win:
   #   runs-on: windows-latest
   create-release:
@@ -74,11 +106,17 @@ jobs:
           git commit -m "chore: update changelog"
           git push
           echo "release_text_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
-      - name: Download files from workspace
+      - name: Download ubuntu artifact
         id: download
         uses: actions/download-artifact@v3
         with:
           name: build-artifact-ubuntu
+          path: .
+      - name: Download macos artifact
+        id: download
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact-macos
           path: .
       - name: Release
         uses: softprops/action-gh-release@v1

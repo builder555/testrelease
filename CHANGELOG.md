@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.9.1
+
+* feat: full build test [98fa2d6](https://github.com/builder555/testrelease/commit/98fa2d6cbf35f7bf5e4b529b095a2817ecf9b105)
+* fix: another commit for the same build [2d803f6](https://github.com/builder555/testrelease/commit/2d803f631344b3059c81de2b3572b211a8dfd987)
+
 ## v1.8.2
 
 * fix: use specific name for artifact [e792f04](https://github.com/builder555/testrelease/commit/e792f04d74c7245811823bcac0804c4fbfb699e2)

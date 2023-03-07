@@ -18,29 +18,27 @@ jobs:
           commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message" | tr -d '"')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
           readarray -t commit_messages <<< "$commits"
+          echo "is_incremented=0" >> $GITHUB_OUTPUT
           for COMMIT_MESSAGE in "${commit_messages[@]}"; do
-            echo "checking $COMMIT_MESSAGE"
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
-              echo "incrementing patch"
+              echo "is_incremented=1" >> $GITHUB_OUTPUT
               patch=$((patch + 1))
             elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
-              echo "incrementing minor"
+              echo "is_incremented=1" >> $GITHUB_OUTPUT
               minor=$((minor + 1))
               patch=0
             elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
-              echo "incrementing major"
+              echo "is_incremented=1" >> $GITHUB_OUTPUT
               major=$((major + 1))
               minor=0
               patch=0
             fi
           done
-          echo "$major.$minor.$patch"
           echo "$major.$minor.$patch" > version.txt
-          cat version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
-        # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        if: ${{ steps.determine-increment.outputs.is_incremented != 0 }}
         run: |
           echo "checking version"
           cat version.txt
@@ -51,7 +49,7 @@ jobs:
           git tag ${{ steps.increment-version.outputs.tag }}
       
       - name: Push changes
-        # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        if: ${{ steps.determine-increment.outputs.is_incremented != 0 }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

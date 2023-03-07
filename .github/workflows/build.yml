@@ -38,7 +38,7 @@ jobs:
           fullpath=$(realpath $zipname)
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifact-ubuntu
           path: ${{ steps.package-app.outputs.dist_path }}
@@ -78,9 +78,9 @@ jobs:
           echo "release_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
       - name: Download files from workspace
         id: download
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          name: workspace
+          name: build-artifact-ubuntu
           path: build/
       - name: Release
         uses: softprops/action-gh-release@v1

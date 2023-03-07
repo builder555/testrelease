@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.10.1
+
+* fix: ensure macos doesn't complain [8abae60](https://github.com/builder555/testrelease/commit/8abae604c83114cde7aa20de7cd80ae04db875ca)
+* fix: checkin' apostrophies [f47fc91](https://github.com/builder555/testrelease/commit/f47fc915a148f580d24128e07bbb17bd7f0cea99)
+* fix: testin' apostrophies 2 [078f66a](https://github.com/builder555/testrelease/commit/078f66af1f1f010cdfe366465ccbb291a3e1c1af)
+* fix: testin' more apostrophies [a829fc9](https://github.com/builder555/testrelease/commit/a829fc9c80c4e4a509d56512c0bf2b0d90346151)
+* fix: missin' quote [c30bddb](https://github.com/builder555/testrelease/commit/c30bddbe4b27802b907ec67c9fa09a1fe8d4f7e2)
+* fix: testin' multiline [0361f84](https://github.com/builder555/testrelease/commit/0361f84bb1bfaa0cb3d792e8c713f24cbf74f193)
+
 ## v1.10.0
 
 * ensure release only runs after builds [b6041bc](https://github.com/builder555/testrelease/commit/b6041bce93d0346e4c8fa894fc1045d615f09cca)

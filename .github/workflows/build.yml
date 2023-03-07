@@ -42,10 +42,10 @@ jobs:
           name: build-artifact-ubuntu
           path: ${{ steps.package-app.outputs.dist_path }}
 
-  build-mac:
-    runs-on: macos-latest
-  build-win:
-    runs-on: windows-latest
+  # build-mac:
+  #   runs-on: macos-latest
+  # build-win:
+  #   runs-on: windows-latest
   create-release:
     needs: build-linux
     runs-on: ubuntu-latest

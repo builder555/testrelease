@@ -16,36 +16,35 @@ jobs:
         id: increment-version
         run: | 
           commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message")
-          echo $commits
-          # IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          # for COMMIT_MESSAGE in $(git log --format=%B "${{ github.event.before }}...${{ github.sha }}"); do
-          #   if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
-          #     patch=$((patch + 1))
-          #   elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
-          #     minor=$((minor + 1))
-          #     patch=0
-          #   elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
-          #     major=$((major + 1))
-          #     minor=0
-          #     patch=0
-          #   fi
-          # done
-          # echo "$major.$minor.$patch" > version.txt
-          # echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
+          IFS='.' read -r major minor patch <<< "$(cat version.txt)"
+          echo "$commits" | while read COMMIT_MESSAGE; do
+            if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
+              patch=$((patch + 1))
+            elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
+              minor=$((minor + 1))
+              patch=0
+            elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
+              major=$((major + 1))
+              minor=0
+              patch=0
+            fi
+          done
+          echo "$major.$minor.$patch" > version.txt
+          echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
 
-      # - name: Commit version changes
-      #   # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
-      #   run: |
-      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git add version.txt
-      #     git commit -m "chore: bump version to $(cat version.txt)"
-      #     git tag ${{ steps.increment-version.outputs.tag }}
+      - name: Commit version changes
+        # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add version.txt
+          git commit -m "chore: bump version to $(cat version.txt)"
+          git tag ${{ steps.increment-version.outputs.tag }}
       
-      # - name: Push changes
-      #   # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.ref }}
-      #     tags: true
+      - name: Push changes
+        # if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true

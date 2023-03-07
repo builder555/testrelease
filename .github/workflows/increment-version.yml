@@ -17,7 +17,8 @@ jobs:
         run: | 
           commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message" | tr -d '"')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          echo "$commits" | while read COMMIT_MESSAGE; do
+          readarray -t commit_messages <<< "$commits"
+          for COMMIT_MESSAGE in "${commit_messages[@]}"; do
             echo "checking $COMMIT_MESSAGE"
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
               echo "incrementing patch"

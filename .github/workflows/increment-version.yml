@@ -34,9 +34,10 @@ jobs:
               patch=0
             fi
           done
-          echo "is_incremented=$is_incremented" >> $GITHUB_OUTPUT
           echo "$major.$minor.$patch" > version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
+          echo "is_incremented=$is_incremented"
+          echo "is_incremented=$is_incremented" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
         if: ${{ steps.determine-increment.outputs.is_incremented != 0 }}

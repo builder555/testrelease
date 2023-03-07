@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.10.0
+
+* fix error [ccc9b9a](https://github.com/builder555/testrelease/commit/ccc9b9a5cedf84a80237bd0533dafb1edaae55f9)
+
 ## v1.9.2
 
 * fix: missed a path [6cf1b94](https://github.com/builder555/testrelease/commit/6cf1b945b3203b957277f333ca26509cb0693438)

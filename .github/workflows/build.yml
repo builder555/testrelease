@@ -30,7 +30,7 @@ jobs:
         id: package-app
         run: |
           zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
-          zip -r $zipname serve/
+          zip -r $zipname api/
           # cd dist && zip -r $zipname ws_serve/ serve/ 
           # cd .. 
           # zip -u dist/$zipname start.sh

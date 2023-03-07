@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.7.2
+
+* fix: serve proper directory [b1e7c30](https://github.com/builder555/testrelease/commit/b1e7c30cfe762b9cf2d466cd3a5634737e53d62a)
+
 ## v1.7.1
 
 * feat: use hash instead of message as a link [e7130cd](https://github.com/builder555/testrelease/commit/e7130cd11cd533510804a227f808ac0d1d0c959b)

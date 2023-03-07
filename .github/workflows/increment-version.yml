@@ -17,7 +17,7 @@ jobs:
         id: increment-version
         run: | 
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          for COMMIT_MESSAGE in $(git log --format=%B "${{ github.event.before }}..${{ github.event.sha }}"); do
+          for COMMIT_MESSAGE in $(git log --format=%B "${{ github.event.before }}..${{ github.sha }}"); do
             if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
               patch=$((patch + 1))
             elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then

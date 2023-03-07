@@ -17,7 +17,7 @@ jobs:
         id: increment-version
         run: | 
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          for commit_message in $(git log --format=%B "${{ github.event.before }}...${{ github.sha }}"); do
+          for commit_message in $(git log --format=%B "${{ github.event.before }}^..${{ github.sha }}"); do
             echo "$commit_message"
           done
       # - name: Commit version changes

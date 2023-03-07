@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.0
+
+* feat: split bulid and release jobs [b30af96](https://github.com/builder555/testrelease/commit/b30af96be1bef42beb77f4313b71b1e7fdeb1466)
+
 ## v1.7.2
 
 * fix: serve proper directory [b1e7c30](https://github.com/builder555/testrelease/commit/b1e7c30cfe762b9cf2d466cd3a5634737e53d62a)

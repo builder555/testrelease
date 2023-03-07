@@ -9,8 +9,8 @@ on:
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-    outputs:
-      package: ${{ steps.package-app.outputs.dist_path }}
+    # outputs:
+    #   package: ${{ steps.package-app.outputs.dist_path }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,10 +33,16 @@ jobs:
         run: |
           zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
           cd dist && zip -r $zipname ws_serve/ serve/ 
-          fullpath=$(realpath $zipname)
           cd .. 
           zip -u dist/$zipname start.sh
+          fullpath=$(realpath $zipname)
           echo "dist_path=$fullpath" >> $GITHUB_OUTPUT
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact-ubuntu
+          path: ${{ steps.package-app.outputs.dist_path }}
+
   # build-mac:
   #   runs-on: macos-latest
   # build-win:
@@ -70,10 +76,16 @@ jobs:
           git commit -m "chore: update changelog"
           git push
           echo "release_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
+      - name: Download files from workspace
+        id: download
+        uses: actions/download-artifact@v2
+        with:
+          name: workspace
+          path: build/
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.get-version.outputs.tag }}
           body_path: ${{ steps.update-changelog.outputs.release_path }}
           files: |
-            ${{ needs.build-linux.outputs.package }}
+            ${{ steps.download.outputs.download-path }}

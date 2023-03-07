@@ -2,18 +2,30 @@ import http.server
 import socketserver
 import os
 
-PORT = 8080
-DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+class Server:
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
+    def __init__(self, port=8080):
+        self.dir = os.path.dirname(os.path.abspath(__file__))
+        if os.path.exists(os.path.join(self.dir,'ui')):
+            self.dir = os.path.join(self.dir,'ui')
+        self.port = port
 
-def main():
-    if os.path.exists('ui'):
-        DIRECTORY = os.path.join(DIRECTORY,'ui')
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        httpd.serve_forever()
+    @property
+    def handler(self):
+        directory = self.dir
+        class Handler(http.server.SimpleHTTPRequestHandler):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, directory=directory, **kwargs)
+        return Handler
+
+    def start(self):
+        os.chdir(self.dir)
+        with socketserver.TCPServer(("", self.port), self.handler) as httpd:
+            try:
+                httpd.serve_forever()
+            except KeyboardInterrupt:
+                return
+
 
 if __name__ == "__main__":
-    main()
+    Server().start()

@@ -12,52 +12,37 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
-      - name: Get current version
-        id: get-version
-        run: echo "current_version=$(cat version.txt)" >> $GITHUB_OUTPUT
-
-      - name: Determine version increment
-        id: determine-increment
-        run: |
-          # Parse the latest commit message and determine the type of change
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 HEAD)
-          if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
-            echo "increment=patch" >> $GITHUB_OUTPUT
-          elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
-            echo "increment=minor" >> $GITHUB_OUTPUT
-          elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
-            echo "increment=major" >> $GITHUB_OUTPUT
-          else
-            echo "increment=none" >> $GITHUB_OUTPUT
-          fi
       - name: Increment version
-        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
         id: increment-version
-        run: |
-          # Parse the current version using semver
+        run: | 
+          commits=$(echo '${{ toJSON(github.event.commits) }}' | jq ".[].message" | tr -d '"')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
-          
-          # Determine the type of increment and update the version number accordingly
-          INCREMENT_TYPE=${{ steps.determine-increment.outputs.increment }}
-          if [[ "$INCREMENT_TYPE" == "patch" ]]; then
-            patch=$((patch + 1))
-          elif [[ "$INCREMENT_TYPE" == "minor" ]]; then
-            minor=$((minor + 1))
-            patch=0
-          elif [[ "$INCREMENT_TYPE" == "major" ]]; then
-            major=$((major + 1))
-            minor=0
-            patch=0
-          fi
-
-          # Update the version file
+          readarray -t commit_messages <<< "$commits"
+          is_incremented=0
+          for COMMIT_MESSAGE in "${commit_messages[@]}"; do
+            if [[ "$COMMIT_MESSAGE" == "fix:"* ]]; then
+              is_incremented=1
+              patch=$((patch + 1))
+            elif [[ "$COMMIT_MESSAGE" == "feat:"* ]]; then
+              is_incremented=1
+              minor=$((minor + 1))
+              patch=0
+            elif [[ "$COMMIT_MESSAGE" == "fix!"* ]] || [[ "$COMMIT_MESSAGE" == "feat!"* ]]; then
+              is_incremented=1
+              major=$((major + 1))
+              minor=0
+              patch=0
+            fi
+          done
           echo "$major.$minor.$patch" > version.txt
           echo "tag=v$major.$minor.$patch" >> $GITHUB_OUTPUT
+          echo "is_incremented=$is_incremented" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
-        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        if: ${{ steps.increment-version.outputs.is_incremented != 0 }}
         run: |
+          echo "checking version"
+          cat version.txt
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add version.txt
@@ -65,7 +50,7 @@ jobs:
           git tag ${{ steps.increment-version.outputs.tag }}
       
       - name: Push changes
-        if: ${{ steps.determine-increment.outputs.increment != 'none' }}
+        if: ${{ steps.increment-version.outputs.is_incremented != 0 }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

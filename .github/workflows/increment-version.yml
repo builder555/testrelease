@@ -16,7 +16,7 @@ jobs:
         id: increment-version
         run: |
           raw_commits=$(cat <<EOFF ${{ toJSON(github.event.commits) }} EOFF)
-          commits=$(echo $raw_commits | jq ".[].message" | tr -d '"')
+          commits=$(echo "$raw_commits" | jq ".[].message" | tr -d '"')
           IFS='.' read -r major minor patch <<< "$(cat version.txt)"
           readarray -t commit_messages <<< "$commits"
           is_incremented=0

@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.11.1
+
+* feat: using full vuejs build system [85def68](https://github.com/builder555/testrelease/commit/85def684b31b3df57a9fb5111c4c42ed60ae9588)
+* fix: add new vuejs project [136c911](https://github.com/builder555/testrelease/commit/136c91199da030c086af4e4737c292284aae997a)
+
 ## v1.10.1
 
 * fix: ensure macos doesn't complain [8abae60](https://github.com/builder555/testrelease/commit/8abae604c83114cde7aa20de7cd80ae04db875ca)

@@ -7,39 +7,39 @@ on:
       - master
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Get version
-        id: get-version
-        run: |
-          echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip install pyinstaller websockets
-      - name: Build application
-        run: |
-          pyinstaller api/ws_serve.py
-          pyinstaller --add-data ui:ui ui/serve.py
-      - name: Package application
-        id: package-app
-        run: |
-          zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
-          cd dist && zip -r $zipname ws_serve/ serve/ 
-          cd .. 
-          zip -u dist/$zipname start.sh
-          mv dist/$zipname ./
-          echo "dist_path=$zipname" >> $GITHUB_OUTPUT
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact-ubuntu
-          path: ${{ steps.package-app.outputs.dist_path }}
+  # build-linux:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Get version
+  #       id: get-version
+  #       run: |
+  #         echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.x'
+  #     - name: Install dependencies
+  #       run: pip install pyinstaller websockets
+  #     - name: Build application
+  #       run: |
+  #         pyinstaller api/ws_serve.py
+  #         pyinstaller --add-data ui:ui ui/serve.py
+  #     - name: Package application
+  #       id: package-app
+  #       run: |
+  #         zipname=$(basename ${GITHUB_REPOSITORY})-Ubuntu-${{ steps.get-version.outputs.tag }}.zip
+  #         cd dist && zip -r $zipname ws_serve/ serve/ 
+  #         cd .. 
+  #         zip -u dist/$zipname start.sh
+  #         mv dist/$zipname ./
+  #         echo "dist_path=$zipname" >> $GITHUB_OUTPUT
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: build-artifact-ubuntu
+  #         path: ${{ steps.package-app.outputs.dist_path }}
 
   build-macos:
     runs-on: macos-latest
@@ -54,12 +54,19 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Install dependencies
-        run: pip install pyinstaller websockets
+        run: |
+          pip install pyinstaller websockets
+          cd ui ; npm install ; cd ..
       - name: Build application
         run: |
+          cd ui ; npm run build ; cd ..
           pyinstaller api/ws_serve.py
-          pyinstaller --add-data ui:ui ui/serve.py
+          pyinstaller --add-data ui/dist:ui ui/serve.py
       - name: Package application
         id: package-app
         run: |
@@ -79,7 +86,7 @@ jobs:
   #   runs-on: windows-latest
   create-release:
     needs: 
-      - build-linux
+      # - build-linux
       - build-macos
     runs-on: ubuntu-latest
     steps:
@@ -108,11 +115,11 @@ jobs:
           git commit -m "chore: update changelog"
           git push
           echo "release_text_path=$(realpath release_msg.tmp)" >> $GITHUB_OUTPUT
-      - name: Download ubuntu artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifact-ubuntu
-          path: .
+      # - name: Download ubuntu artifact
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: build-artifact-ubuntu
+      #     path: .
       - name: Download macos artifact
         uses: actions/download-artifact@v3
         with:

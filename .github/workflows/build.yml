@@ -14,6 +14,7 @@ jobs:
     outputs:
       tag: ${{ steps.get-version.outputs.tag }}
       release_url: ${{ steps.release-url.outputs.release_url }}
+      name: ${{ steps.get-name.outputs.name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,6 +22,10 @@ jobs:
         id: get-version
         run: |
           echo "tag=v$(cat version.txt)" >> $GITHUB_OUTPUT
+      - name: Get name
+        id: get-name
+        run: |
+          echo "name=$(basename ${GITHUB_REPOSITORY})" >> $GITHUB_OUTPUT
       - name: Update changelog
         id: update-changelog
         env:
@@ -94,7 +99,7 @@ jobs:
       - name: Package application for ${{matrix.TARGET}}
         id: package-app
         run: |
-          ${{ matrix.PACKAGE_CMD }} "$(basename ${GITHUB_REPOSITORY})-${{matrix.TARGET}}-${{matrix.ARCHITECTURE}}-${{ needs.create-release.outputs.tag }}"
+          ${{ matrix.PACKAGE_CMD }} "${{needs.create-release.outputs.name}}-${{matrix.TARGET}}-${{matrix.ARCHITECTURE}}-${{needs.create-release.outputs.tag}}"
       - name: Upload release asset for ${{matrix.target}}
         uses: actions/upload-release-asset@v1
         env:

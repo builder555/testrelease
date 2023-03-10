@@ -10,7 +10,7 @@ fi
 zip_path="$(dirname "${PWD}")/${name}.zip"
 
 pushd dist || exit
-zip -r "${zip_path}" ws_serve/ serve/
+zip -r "${zip_path}" main_server/ serve/
 
 popd || exit
 zip -u "${zip_path}" start.sh

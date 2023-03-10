@@ -8,7 +8,7 @@ exit 1
 $zip_path = "$(Get-Location)/$name.zip"
 
 Push-Location dist
-Compress-Archive -Path ws_serve/, serve/ -DestinationPath $zip_path -Force
+Compress-Archive -Path main_server/, serve/ -DestinationPath $zip_path -Force
 Pop-Location
 
 Compress-Archive -Update start.ps1 $zip_path

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.11.6
+
+* fix: missed a python library [f066fcd](https://github.com/builder555/testrelease/commit/f066fcda982ab8adce85acd91f8c2e9a80daeece)
+
 ## v1.11.5
 
 * fix: use proper directories [8239485](https://github.com/builder555/testrelease/commit/823948546902c9e0782d605e6518ec64edb5de8b)

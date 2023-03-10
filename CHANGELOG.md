@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.11.3
+
+* fix: give executable access to ci scripts [cf0f048](https://github.com/builder555/testrelease/commit/cf0f0483af096ebd353424fd5a06c1741e0082ff)
+
 ## v1.11.2
 
 * fix: testing full build [eee2ae9](https://github.com/builder555/testrelease/commit/eee2ae91ff40da88ce9e071754ced6b8321dd87f)

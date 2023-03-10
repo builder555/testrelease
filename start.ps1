@@ -1,4 +1,4 @@
-Start-Process ./ws_serve/ws_serve.exe
+Start-Process ./main_server/main_server.exe
 $pid1 = $LASTEXITCODE
 
 Start-Process ./serve/serve.exe

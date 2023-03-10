@@ -1,325 +1,106 @@
 # Changelog
 
-## [1.3.1](https://github.com/builder555/PineSAM/compare/v1.3.0...v1.3.1) (2023-02-28)
+## v1.11.1
 
+* feat: using full vuejs build system [85def68](https://github.com/builder555/testrelease/commit/85def684b31b3df57a9fb5111c4c42ed60ae9588)
+* fix: add new vuejs project [136c911](https://github.com/builder555/testrelease/commit/136c91199da030c086af4e4737c292284aae997a)
 
-### Bug Fixes
+## v1.10.1
 
-* hide pinecil name by default. closes [#56](https://github.com/builder555/PineSAM/issues/56) ([0593657](https://github.com/builder555/PineSAM/commit/059365762526d980c09de1e5cbe1890964c7de20))
+* fix: ensure macos doesn't complain [8abae60](https://github.com/builder555/testrelease/commit/8abae604c83114cde7aa20de7cd80ae04db875ca)
+* fix: checkin' apostrophies [f47fc91](https://github.com/builder555/testrelease/commit/f47fc915a148f580d24128e07bbb17bd7f0cea99)
+* fix: testin' apostrophies 2 [078f66a](https://github.com/builder555/testrelease/commit/078f66af1f1f010cdfe366465ccbb291a3e1c1af)
+* fix: testin' more apostrophies [a829fc9](https://github.com/builder555/testrelease/commit/a829fc9c80c4e4a509d56512c0bf2b0d90346151)
+* fix: missin' quote [c30bddb](https://github.com/builder555/testrelease/commit/c30bddbe4b27802b907ec67c9fa09a1fe8d4f7e2)
+* fix: testin' multiline [0361f84](https://github.com/builder555/testrelease/commit/0361f84bb1bfaa0cb3d792e8c713f24cbf74f193)
 
-## [1.3.0](https://github.com/builder555/PineSAM/compare/v1.2.1...v1.3.0) (2023-02-28)
+## v1.10.0
 
+* ensure release only runs after builds [b6041bc](https://github.com/builder555/testrelease/commit/b6041bce93d0346e4c8fa894fc1045d615f09cca)
 
-### Features
+## v1.10.0
 
-* holding +/- speeds up change ([9c766a2](https://github.com/builder555/PineSAM/commit/9c766a2971f576692adb923854415576e4e852ed))
+* fix error [ccc9b9a](https://github.com/builder555/testrelease/commit/ccc9b9a5cedf84a80237bd0533dafb1edaae55f9)
 
-## [1.2.1](https://github.com/builder555/PineSAM/compare/v1.2.0...v1.2.1) (2023-02-27)
+## v1.9.2
 
+* fix: missed a path [6cf1b94](https://github.com/builder555/testrelease/commit/6cf1b945b3203b957277f333ca26509cb0693438)
 
-### Bug Fixes
+## v1.9.1
 
-* numbers shifted up ([fcd2fe7](https://github.com/builder555/PineSAM/commit/fcd2fe7755869e5bfd5aca47dee7a50f3145bd9e))
-* prevent console errors when pinecil not connected ([dd660c3](https://github.com/builder555/PineSAM/commit/dd660c39b116c57478bfbb23e76a3490b940ea50))
-* use actual settings value instead of ref ([8c34f05](https://github.com/builder555/PineSAM/commit/8c34f05ec822aa497b904cbb80ac3526286774e0))
+* feat: full build test [98fa2d6](https://github.com/builder555/testrelease/commit/98fa2d6cbf35f7bf5e4b529b095a2817ecf9b105)
+* fix: another commit for the same build [2d803f6](https://github.com/builder555/testrelease/commit/2d803f631344b3059c81de2b3572b211a8dfd987)
 
-## [1.2.0](https://github.com/builder555/PineSAM/compare/v1.1.0...v1.2.0) (2023-02-27)
+## v1.8.2
 
+* fix: use specific name for artifact [e792f04](https://github.com/builder555/testrelease/commit/e792f04d74c7245811823bcac0804c4fbfb699e2)
 
-### Features
+## v1.8.1
 
-* broadcast live data to clients [#48](https://github.com/builder555/PineSAM/issues/48) ([bd532a3](https://github.com/builder555/PineSAM/commit/bd532a304118601c528d9a0c6459c8758e468d0c))
-* Merge pull request [#55](https://github.com/builder555/PineSAM/issues/55) from NeilHanlon/work-screen_buttons ([764c714](https://github.com/builder555/PineSAM/commit/764c714aaf0556d4c1c73d31bfa53ae7dbcde98a))
-* show live temperature + electricals ([5533ec0](https://github.com/builder555/PineSAM/commit/5533ec05957584ca8aec44f9721c591170a4293e))
-* Work screen improvements and functionality implmementation ([7291869](https://github.com/builder555/PineSAM/commit/729186984caad2deff45dace91641b2aebb08c5a))
+* fix: use different file sharing b/w jobs [dcec548](https://github.com/builder555/testrelease/commit/dcec548069e11d7c4bd5dfea7cd512ac3c91e823)
 
+## v1.8.0
 
-### Bug Fixes
+* feat: split bulid and release jobs [b30af96](https://github.com/builder555/testrelease/commit/b30af96be1bef42beb77f4313b71b1e7fdeb1466)
 
-* screen disappears if no device found ([88cf666](https://github.com/builder555/PineSAM/commit/88cf66633782f6358b22e6a04a8145a5b69560de))
+## v1.7.2
 
-## [1.1.0](https://github.com/builder555/PineSAM/compare/v1.0.16...v1.1.0) (2023-02-24)
+* fix: serve proper directory [b1e7c30](https://github.com/builder555/testrelease/commit/b1e7c30cfe762b9cf2d466cd3a5634737e53d62a)
 
+## v1.7.1
 
-### Features
+* feat: use hash instead of message as a link [e7130cd](https://github.com/builder555/testrelease/commit/e7130cd11cd533510804a227f808ac0d1d0c959b)
+* fix: testing new incrementor [e2fb665](https://github.com/builder555/testrelease/commit/e2fb6652c4705dcb74670eb30d727ac72bf0bbdc)
+* fix: trying another way [5aefbf3](https://github.com/builder555/testrelease/commit/5aefbf33734768d7f2e972c111846719bfc75ea0)
+* fix: one more [d0a6683](https://github.com/builder555/testrelease/commit/d0a6683d3df540e43770b7f88de24ea1a191dca8)
+* fix: aaand another [5e9edfb](https://github.com/builder555/testrelease/commit/5e9edfb4ae8b7ddc91f411e2b82317b2df8a7c0d)
+* fix: again [0586867](https://github.com/builder555/testrelease/commit/0586867689053dbf467489316101d53164f32a95)
+* fix: next step [4d5da10](https://github.com/builder555/testrelease/commit/4d5da10380f720516f692c939152825ebf753c72)
+* fix: encore [fe2465d](https://github.com/builder555/testrelease/commit/fe2465d2e3335f7169b3f0ebe736bf6576de6a23)
+* fix: missed a property [e4ede51](https://github.com/builder555/testrelease/commit/e4ede5181ff51fdeba2980811181218a9d90711e)
+* fix: still more [45cfcff](https://github.com/builder555/testrelease/commit/45cfcffaa3003e9f499a0cc14e98de7315b022f9)
+* fix: test echo [e199231](https://github.com/builder555/testrelease/commit/e199231b15804bbf55462e46c78cc59ebbc6945f)
+* fix: more logs [a8fcd2c](https://github.com/builder555/testrelease/commit/a8fcd2ca743c16e3fd97a0ecd37fa77f00fc0586)
+* fix: trying another approach [788bf20](https://github.com/builder555/testrelease/commit/788bf204868be3703b233588e94cbde0c2e1e454)
+* fix: another attempt [caccdb7](https://github.com/builder555/testrelease/commit/caccdb7135aa4b51cd130076f48bb48d7f9c8ba6)
+* fix: new test [9effc1d](https://github.com/builder555/testrelease/commit/9effc1d043b6d784279eddc47195da99e2d0059a)
+* fix: hopefully.... [d7f3007](https://github.com/builder555/testrelease/commit/d7f300727e8dd50c6f82bc9c73e7bcbcd7da62e2)
+* fix: this works. [6aeb7af](https://github.com/builder555/testrelease/commit/6aeb7af9cba220a7b94cd23f4f3a83fed0472ab7)
+* fix: test msg [b6b3a32](https://github.com/builder555/testrelease/commit/b6b3a32a32786c250fe5ea89538ba01e3e486693)
+* fix: more echo [99606e6](https://github.com/builder555/testrelease/commit/99606e6b806f4a4890c45c5950a3f88f033d69ef)
+* fix: testing increment [7b9c24e](https://github.com/builder555/testrelease/commit/7b9c24e72738490867bde59958c068423e666fd7)
+* fix: remove quotes [4abbb69](https://github.com/builder555/testrelease/commit/4abbb69de9a65324fc7adb20a800e5f858b5d8e7)
+* fix: more echo [dc29b20](https://github.com/builder555/testrelease/commit/dc29b20f3b6f61cc748067c40fc24c08fcb2396b)
+* fix: scope [35228df](https://github.com/builder555/testrelease/commit/35228df6ce9ffa1cbf5ce804a85a8f7f0cd9ce47)
+* testing no-update [c2d5857](https://github.com/builder555/testrelease/commit/c2d58576ee9bc77a3bfc10869bf99a2f695c75b9)
+* fix: removed test file [b0d2b49](https://github.com/builder555/testrelease/commit/b0d2b49058896e21e7730b432161d3e0c2f33dcc)
+* fix: another file gone [3de6347](https://github.com/builder555/testrelease/commit/3de63471563fc48c1d9d4d98c5b9921f8fb78f76)
+* feat: one more file [6fb82fa](https://github.com/builder555/testrelease/commit/6fb82fa90d0fe724467b04f1922e7a45af434414)
+* fix: check [4944b09](https://github.com/builder555/testrelease/commit/4944b092680fe567e5ba0bcdd31cc879f208a46a)
 
-* keep the screen awake, closes [#46](https://github.com/builder555/PineSAM/issues/46) ([a337afc](https://github.com/builder555/PineSAM/commit/a337afccf28bf7e27ad2da855b736e7408ab4761))
+## v1.5.4
 
-## [1.0.16](https://github.com/builder555/PineSAM/compare/v1.0.15...v1.0.16) (2023-02-22)
+* [Merge pull request #8 from builder555/master
 
+update dev](https://github.com/builder555/testrelease/commit/d19f09aa6b9fe2848d51536fc5ec70c2aea16e83)
+* [testing workflow without version change](https://github.com/builder555/testrelease/commit/3cdd286aa74b79e68bffd61f66cdeea835d53c4e)
+* [another test without increment](https://github.com/builder555/testrelease/commit/a1c10a571bb20e8372d9dad543c7111b30e8b8fa)
+* [more test w/o inc](https://github.com/builder555/testrelease/commit/6ce0f8d638b82399ef75bcd883d5a67ffe8edc12)
+* [fix: using proper url for commit messages](https://github.com/builder555/testrelease/commit/65e05a7027c9fd75b77b6265e0578d475b60ffad)
 
-### Bug Fixes
+## v1.5.3
 
-* [#15](https://github.com/builder555/PineSAM/issues/15) ([c21ea39](https://github.com/builder555/PineSAM/commit/c21ea391fa32544af86352cdce67b5498d04df85))
+* [feat: use incremental changelog](https://api.github.com/repos/builder555/testrelease/git/commits/698e4e1dcd3268401cc1bebaabc5ae05d96de3e3)
+* [fix: more fake changes](https://api.github.com/repos/builder555/testrelease/git/commits/fb7879dccd5116e0dd3e8d49e6dfaa65054d2464)
 
-## [1.0.15](https://github.com/builder555/PineSAM/compare/v1.0.14...v1.0.15) (2023-02-22)
+## v1.5.2
 
-
-### Bug Fixes
-
-* closes [#38](https://github.com/builder555/PineSAM/issues/38) ([6f6fcaa](https://github.com/builder555/PineSAM/commit/6f6fcaad5cc4c93dccfb73ce483a482d1ad2f996))
-
-## [1.0.14](https://github.com/builder555/PineSAM/compare/v1.0.13...v1.0.14) (2023-02-22)
-
-
-### Bug Fixes
-
-* added link to BLE fw [#36](https://github.com/builder555/PineSAM/issues/36) ([b91b9f8](https://github.com/builder555/PineSAM/commit/b91b9f85e8049651fcc55e441b7218d800c1ba0c))
-* aligned controls ([6f8d371](https://github.com/builder555/PineSAM/commit/6f8d3716134ac4067b0df6bf6ad4807405f770e2))
-* colour+ui tweaks ([1d60d6f](https://github.com/builder555/PineSAM/commit/1d60d6fb871935a8d3e51aa1792d75d755247a20))
-* minor ui cleanup on mobile, fix GH link on ios [#15](https://github.com/builder555/PineSAM/issues/15) ([77b61c7](https://github.com/builder555/PineSAM/commit/77b61c705380ec52653d2bf59d882ef3734b40c3))
-* trying to improve [#40](https://github.com/builder555/PineSAM/issues/40) ([175309b](https://github.com/builder555/PineSAM/commit/175309be2990d6f67655822027d3a95b532632ac))
-* was an easy fix for [#41](https://github.com/builder555/PineSAM/issues/41) ([1e3a629](https://github.com/builder555/PineSAM/commit/1e3a629bea8d938720cf5abac1dc2d92edcc085b))
-
-## [1.0.13](https://github.com/builder555/PineSAM/compare/v1.0.12...v1.0.13) (2023-02-21)
-
-
-### Bug Fixes
-
-* potentially addresses [#34](https://github.com/builder555/PineSAM/issues/34) ([3abbcd3](https://github.com/builder555/PineSAM/commit/3abbcd3a55a46b5706261bef1866262f97cd7df6))
-
-## [1.0.12](https://github.com/builder555/PineSAM/compare/v1.0.11...v1.0.12) (2023-02-20)
-
-
-### Bug Fixes
-
-* left-align labels ([931828c](https://github.com/builder555/PineSAM/commit/931828c077ad1644e6787bdb711d6105be4807d1))
-
-## [1.0.11](https://github.com/builder555/PineSAM/compare/v1.0.10...v1.0.11) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* don't trigger another workflow (hopefully) ([0858bfb](https://github.com/builder555/PineSAM/commit/0858bfbfa08e06da3ca6ab1a07649cd1a7e458e2))
-* gh-token didn't work ([4dc73d4](https://github.com/builder555/PineSAM/commit/4dc73d4d0834269eb278c078c0019835ff519f89))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove automerge ([408236b](https://github.com/builder555/PineSAM/commit/408236b83707503d76eab46d1d56db5ef221f064))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.10](https://github.com/builder555/PineSAM/compare/v1.0.9...v1.0.10) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* don't trigger another workflow (hopefully) ([0858bfb](https://github.com/builder555/PineSAM/commit/0858bfbfa08e06da3ca6ab1a07649cd1a7e458e2))
-* gh-token didn't work ([4dc73d4](https://github.com/builder555/PineSAM/commit/4dc73d4d0834269eb278c078c0019835ff519f89))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.9](https://github.com/builder555/PineSAM/compare/v1.0.8...v1.0.9) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* don't trigger another workflow (hopefully) ([0858bfb](https://github.com/builder555/PineSAM/commit/0858bfbfa08e06da3ca6ab1a07649cd1a7e458e2))
-* gh-token didn't work ([4dc73d4](https://github.com/builder555/PineSAM/commit/4dc73d4d0834269eb278c078c0019835ff519f89))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.8](https://github.com/builder555/PineSAM/compare/v1.0.7...v1.0.8) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* don't trigger another workflow (hopefully) ([0858bfb](https://github.com/builder555/PineSAM/commit/0858bfbfa08e06da3ca6ab1a07649cd1a7e458e2))
-* gh-token didn't work ([4dc73d4](https://github.com/builder555/PineSAM/commit/4dc73d4d0834269eb278c078c0019835ff519f89))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.7](https://github.com/builder555/PineSAM/compare/v1.0.6...v1.0.7) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.6](https://github.com/builder555/PineSAM/compare/v1.0.5...v1.0.6) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.5](https://github.com/builder555/PineSAM/compare/v1.0.4...v1.0.5) (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* adding separate automerge workflow ([e219228](https://github.com/builder555/PineSAM/commit/e219228408f36353f93bd838ff2cc35d402e1ca6))
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* remove dependencies ([b14426f](https://github.com/builder555/PineSAM/commit/b14426f909c2f63191f43912bf3407000dac92fe))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## [1.0.4](https://github.com/builder555/PineSAM/compare/v1.0.3...v1.0.4) (2023-02-20)
-
-
-### Bug Fixes
-
-* again ([5c59726](https://github.com/builder555/PineSAM/commit/5c59726d45fbb5f506916db75e50b4b7d9091d41))
-* another automerge test ([8cce26c](https://github.com/builder555/PineSAM/commit/8cce26c9c83897cc4935c769974739e382175855))
-* auto-merge isn't working ([c7dc301](https://github.com/builder555/PineSAM/commit/c7dc301907c0922a111e2dba01a20093d2d6a9ce))
-* auto-merge version PRs ([abb6dc9](https://github.com/builder555/PineSAM/commit/abb6dc95caddc6921c254e53e9bbeb3d40dac42e))
-* automerge test 4 ([4af1be1](https://github.com/builder555/PineSAM/commit/4af1be1eb84e59b67e328b15932a4f541e50f0a2))
-* automerge test 5 ([22daaec](https://github.com/builder555/PineSAM/commit/22daaece3a74ffb7965c1e000fd22ac9612c4abf))
-* hopefully last attempt at automerge ([af3fa34](https://github.com/builder555/PineSAM/commit/af3fa34530b2e4e0c871a69ca0330bb623a9e0c6))
-* log automerge test ([bff6bc0](https://github.com/builder555/PineSAM/commit/bff6bc049ed7a9800311affdf904a969acb8d1aa))
-* release-please should be its own job ([3988999](https://github.com/builder555/PineSAM/commit/398899999bc65d3bd7ed4bf66e16ca8770b6a8a1))
-* testing another auto-merge ([6a88d5a](https://github.com/builder555/PineSAM/commit/6a88d5ad85b48ced6920cbc0a391d6d19fd98e7a))
-
-## [1.0.3](https://github.com/builder555/PineSAM/compare/v1.0.2...v1.0.3) (2023-02-20)
-
-
-### Bug Fixes
-
-* display version number ([f2a74d3](https://github.com/builder555/PineSAM/commit/f2a74d3e9755c7d3c46126274b7854883a46d94f))
-
-## [1.0.2](https://github.com/builder555/PineSAM/compare/v1.0.1...v1.0.2) (2023-02-20)
-
-
-### Bug Fixes
-
-* testing version.txt file ([5a10888](https://github.com/builder555/PineSAM/commit/5a1088881c898384e4fe635cfa84464ead3abe58))
-
-## [1.0.1](https://github.com/builder555/PineSAM/compare/v1.0.0...v1.0.1) (2023-02-20)
-
-
-### Bug Fixes
-
-* testing versioning ([b6a3052](https://github.com/builder555/PineSAM/commit/b6a3052b738ee61e2122fe828023ea863a0954d9))
-
-## 1.0.0 (2023-02-20)
-
-
-### Bug Fixes
-
-* added token, hopefully ([20a4824](https://github.com/builder555/PineSAM/commit/20a48247c4202d2f382333e8adcfd642724e17f6))
-* attempt 3 at secrets ([c45d4ea](https://github.com/builder555/PineSAM/commit/c45d4ea890616ffa1024d4b3e451e4f4c5830853))
-* corrected branch name in gh workflow ([d45ddd3](https://github.com/builder555/PineSAM/commit/d45ddd30cb7f4c39c9440ddd89e632aff2ba9c89))
-* maybe now? ([96393bb](https://github.com/builder555/PineSAM/commit/96393bb65def3887d82a1d03cfd19b7768c3f279))
-* minor refactor ([8874b73](https://github.com/builder555/PineSAM/commit/8874b73808147417ff44e25fd6cf0453d8e63bff))
+* [fix: format changelog](https://api.github.com/repos/builder555/testrelease/git/commits/9de4a612f7dfa80dbbdac7ed815720104ec0df56)
+* [fix: a pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/9de4a612f7dfa80dbbdac7ed815720104ec0df56)
+* [fix: another pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/9de4a612f7dfa80dbbdac7ed815720104ec0df56)
+* [fix: format changelog](https://api.github.com/repos/builder555/testrelease/git/commits/691c795e70771ef77b566427f322f4b9fc309797)
+* [fix: a pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/691c795e70771ef77b566427f322f4b9fc309797)
+* [fix: another pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/691c795e70771ef77b566427f322f4b9fc309797)
+* [fix: format changelog](https://api.github.com/repos/builder555/testrelease/git/commits/7f3f69ea4909bd65ee0fb0dd7177d45d4082d5fb)
+* [fix: a pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/7f3f69ea4909bd65ee0fb0dd7177d45d4082d5fb)
+* [fix: another pretend change](https://api.github.com/repos/builder555/testrelease/git/commits/7f3f69ea4909bd65ee0fb0dd7177d45d4082d5fb)

@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.11.2
+
+* fix: testing full build [eee2ae9](https://github.com/builder555/testrelease/commit/eee2ae91ff40da88ce9e071754ced6b8321dd87f)
+* Merge branch 'master' into dev [2b9e490](https://github.com/builder555/testrelease/commit/2b9e490a8d298f4b4823f43520f1c48b4c0562d5)
+
 ## v1.11.1
 
 * feat: using full vuejs build system [85def68](https://github.com/builder555/testrelease/commit/85def684b31b3df57a9fb5111c4c42ed60ae9588)

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.11.7
+
+* fix: include version.txt, don't use relative path [7551ab7](https://github.com/builder555/testrelease/commit/7551ab71d5758ea2221f72930044f9a45fa06dd7)
+
 ## v1.11.6
 
 * fix: missed a python library [f066fcd](https://github.com/builder555/testrelease/commit/f066fcda982ab8adce85acd91f8c2e9a80daeece)

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.11.5
+
+* fix: use proper directories [8239485](https://github.com/builder555/testrelease/commit/823948546902c9e0782d605e6518ec64edb5de8b)
+
 ## v1.11.4
 
 * fix: windows issues, of course [d4d7314](https://github.com/builder555/testrelease/commit/d4d73142e150e0a5b6a114ecb1c42e5e92828427)

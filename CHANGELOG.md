@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.11.4
+
+* fix: windows issues, of course [d4d7314](https://github.com/builder555/testrelease/commit/d4d73142e150e0a5b6a114ecb1c42e5e92828427)
+
 ## v1.11.3
 
 * fix: give executable access to ci scripts [cf0f048](https://github.com/builder555/testrelease/commit/cf0f0483af096ebd353424fd5a06c1741e0082ff)
